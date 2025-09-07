@@ -456,13 +456,13 @@ export default function LoFiVibesGenerator() {
     <div className="min-h-screen bg-background relative overflow-hidden">
       {animationFrames.length > 0 && (currentStep === "animation" || currentStep === "complete") ? (
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-30 transition-all duration-75"
+          className="absolute inset-0 bg-cover bg-center opacity-60 transition-all duration-75"
           style={{ backgroundImage: `url(${animationFrames[currentFrame % animationFrames.length]})` }}
         />
       ) : (
         generatedImage && (
           <div
-            className="absolute inset-0 bg-cover bg-center opacity-30"
+            className="absolute inset-0 bg-cover bg-center opacity-60"
             style={{ backgroundImage: `url(${generatedImage})` }}
           />
         )
@@ -498,18 +498,18 @@ export default function LoFiVibesGenerator() {
         </div>
 
         {sessionComplete && (
-          <Card className="mb-8 lo-fi-card border-primary/30 bg-card/90 backdrop-blur-lg">
+          <Card className="mb-8 lo-fi-card border-primary/20 bg-card/20 backdrop-blur-sm">
             <CardHeader>
-              <CardTitle className="text-3xl font-[var(--font-heading)] flex items-center gap-3">
-                <Sparkles className="h-8 w-8 text-primary animate-pulse-slow" />
+              <CardTitle className="text-3xl font-[var(--font-heading)] flex items-center gap-3 text-white drop-shadow-lg">
+                <Sparkles className="h-8 w-8 text-primary animate-pulse-slow drop-shadow-lg" />
                 Your Lo-Fi Session
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex flex-col gap-6">
                 <div className="text-center">
-                  <div className="text-2xl font-medium mb-2">{prompt || "Untitled Vibe"}</div>
-                  <div className="text-muted-foreground flex items-center justify-center gap-2">
+                  <div className="text-2xl font-medium mb-2 text-white drop-shadow-lg">{prompt || "Untitled Vibe"}</div>
+                  <div className="text-white/80 flex items-center justify-center gap-2 drop-shadow-lg">
                     <Music className="h-4 w-4" />
                     {selectedInstrumentLabels} • {duration[0]}s • 24-Frame Animation
                   </div>
@@ -520,9 +520,13 @@ export default function LoFiVibesGenerator() {
                     onClick={togglePlayback}
                     variant="outline"
                     size="lg"
-                    className="w-20 h-20 rounded-full bg-primary/20 border-primary/40 hover:bg-primary/30 hover:scale-110 transition-all duration-300"
+                    className="w-20 h-20 rounded-full bg-primary/30 border-primary/50 hover:bg-primary/40 hover:scale-110 transition-all duration-300 backdrop-blur-sm"
                   >
-                    {isPlaying ? <Pause className="h-8 w-8" /> : <Play className="h-8 w-8" />}
+                    {isPlaying ? (
+                      <Pause className="h-8 w-8 text-white drop-shadow-lg" />
+                    ) : (
+                      <Play className="h-8 w-8 text-white drop-shadow-lg" />
+                    )}
                   </Button>
                 </div>
 
@@ -531,7 +535,7 @@ export default function LoFiVibesGenerator() {
                     onClick={shareSession}
                     variant="ghost"
                     size="sm"
-                    className="text-muted-foreground hover:text-foreground"
+                    className="text-white/80 hover:text-white bg-black/20 hover:bg-black/30 backdrop-blur-sm"
                   >
                     <Share2 className="h-4 w-4 mr-2" />
                     Share
@@ -541,7 +545,7 @@ export default function LoFiVibesGenerator() {
                       onClick={downloadSession}
                       variant="ghost"
                       size="sm"
-                      className="text-muted-foreground hover:text-foreground"
+                      className="text-white/80 hover:text-white bg-black/20 hover:bg-black/30 backdrop-blur-sm"
                     >
                       <Download className="h-4 w-4 mr-2" />
                       Download
@@ -551,7 +555,7 @@ export default function LoFiVibesGenerator() {
                     onClick={resetSession}
                     variant="ghost"
                     size="sm"
-                    className="text-muted-foreground hover:text-foreground"
+                    className="text-white/80 hover:text-white bg-black/20 hover:bg-black/30 backdrop-blur-sm"
                   >
                     <RotateCcw className="h-4 w-4 mr-2" />
                     New Session
@@ -677,7 +681,7 @@ export default function LoFiVibesGenerator() {
       </div>
 
       <Dialog open={showFlowModal && !sessionComplete} onOpenChange={() => {}}>
-        <DialogContent className="max-w-2xl bg-card/80 backdrop-blur-md border-border/50">
+        <DialogContent className="max-w-2xl bg-card/30 backdrop-blur-md border-border/30">
           <DialogHeader>
             <DialogTitle className="text-2xl font-[var(--font-heading)] flex items-center gap-2">
               {currentStepConfig.icon && <currentStepConfig.icon className="h-6 w-6 text-primary" />}
